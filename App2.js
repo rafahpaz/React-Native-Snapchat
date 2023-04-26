@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-export default function App() {
+export default function LoginScreen() {
+  const [emailOrUsername, setEmailOrUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    // Implementar lógica de login aqui
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Criar conta e Aceitar</Text>
-      </TouchableOpacity>
+      <View style={styles.card}>
+        <Image source={require('./assets/snapchat.png')} style={styles.image} />
+        <Text style={styles.title}>Log In</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Usuário ou E-mail"
+          value={emailOrUsername}
+          onChangeText={setEmailOrUsername}
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -28,37 +40,50 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fffb04',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginBottom: 10,
+    
+  },
+  card: {
     backgroundColor: '#fff',
+    borderRadius: 10,
     padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
   },
   input: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    backgroundColor: '#F2F2F2',
     borderRadius: 5,
-    padding: 10,
+    padding:10,
     marginBottom: 10,
   },
   button: {
-    backgroundColor: '#2980b9',
-    width: '100%',
-    height: 40,
+    backgroundColor: '#c3c5c7',
     borderRadius: 5,
+    padding: 10,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
   },
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
   },
 });
